@@ -37,6 +37,12 @@ npx agent-core-mcp
 
 No install step is required to run it. Requires Node.js 18 or newer.
 
+Available from:
+
+- **npm** — [`agent-core-mcp`](https://www.npmjs.com/package/agent-core-mcp)
+- **Official MCP registry** — `io.github.kinbinghua-lgtm/agent-core-mcp`
+- **Source** — [github.com/kinbinghua-lgtm/agent-core-mcp](https://github.com/kinbinghua-lgtm/agent-core-mcp)
+
 ## Configure
 
 ```json
