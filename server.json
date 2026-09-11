@@ -3,7 +3,7 @@
   "name": "io.github.kinbinghua-lgtm/agent-core-mcp",
   "title": "Agent Core",
   "description": "Deterministic computation tools for AI agents. Zero dependencies, no network, read-only.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "websiteUrl": "https://www.npmjs.com/package/agent-core-mcp",
   "repository": {
     "url": "https://github.com/kinbinghua-lgtm/agent-core-mcp",
@@ -15,7 +15,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "agent-core-mcp",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"

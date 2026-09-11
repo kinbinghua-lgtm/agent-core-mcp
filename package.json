@@ -1,6 +1,7 @@
 {
   "name": "agent-core-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.kinbinghua-lgtm/agent-core-mcp",
   "description": "Deterministic computation tools for AI agents: exact diffing, hashing, JSON querying, calendar arithmetic, regex extraction with ReDoS analysis, CSV parsing, similarity scoring, unit and base conversion. Zero dependencies, zero network, read-only.",
   "license": "MIT",
   "engines": {

@@ -131,6 +131,23 @@ check('repository url is HTTPS and matches the declared namespace', () => {
 });
 
 // --- consistency with the npm tarball --------------------------------------
+check('package.json declares mcpName matching server.json name exactly', () => {
+  // This is the field the official registry checks against the published npm
+  // package to prove ownership. Omitting it cost a full publish round trip:
+  //   "NPM package 'agent-core-mcp' is missing required 'mcpName' field."
+  must(pkg.mcpName, 'package.json has no mcpName field; the registry will reject the submission');
+  must(
+    pkg.mcpName === doc.name,
+    `mcpName "${pkg.mcpName}" must equal server.json name "${doc.name}"`
+  );
+  return pkg.mcpName;
+});
+
+check('mcpName namespace matches the repository owner', () => {
+  const owner = doc.repository.url.replace('https://github.com/', '').split('/')[0];
+  must(pkg.mcpName === `io.github.${owner}/${pkg.name}`, `mcpName must be io.github.${owner}/${pkg.name}`);
+});
+
 check('the binary declared in package.json exists on disk', () => {
   const bin = Object.values(pkg.bin || {})[0];
   must(bin, 'package.json declares no bin entry');
