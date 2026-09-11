@@ -1,0 +1,40 @@
+{
+  "name": "agent-core-mcp",
+  "version": "0.1.0",
+  "description": "Deterministic computation tools for AI agents: exact diffing, hashing, JSON querying, calendar arithmetic, regex extraction with ReDoS analysis, CSV parsing, similarity scoring, unit and base conversion. Zero dependencies, zero network, read-only.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "agent-core-mcp": "server.cjs"
+  },
+  "main": "server.cjs",
+  "files": [
+    "server.cjs",
+    "regex-worker.cjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node server.cjs",
+    "test": "node selftest.mjs && node protocol-test.cjs",
+    "test:engine": "node selftest.mjs",
+    "test:protocol": "node protocol-test.cjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "ai-agents",
+    "deterministic",
+    "diff",
+    "hash",
+    "json",
+    "regex",
+    "csv",
+    "no-dependencies"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

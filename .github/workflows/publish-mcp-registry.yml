@@ -1,0 +1,57 @@
+name: publish-mcp-registry
+
+# Publishes server.json to the official MCP registry.
+#
+# Authentication is GitHub OIDC: the registry verifies that the workflow runs in
+# the repository that owns the `io.github.kinbinghua-lgtm` namespace, so no secret
+# or long-lived token is stored anywhere. That is the reason the namespace in
+# server.json must stay in lockstep with this repository's owner.
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  id-token: write   # required for OIDC
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify server.json matches package.json before publishing
+        run: |
+          node -e "
+            const s = require('./server.json');
+            const p = require('./package.json');
+            const fail = [];
+            if (s.version !== p.version) fail.push('version mismatch: server.json=' + s.version + ' package.json=' + p.version);
+            if (s.packages[0].identifier !== p.name) fail.push('identifier mismatch: ' + s.packages[0].identifier + ' vs ' + p.name);
+            if (s.packages[0].version !== p.version) fail.push('package version mismatch');
+            if (s.description.length > 100) fail.push('description too long: ' + s.description.length);
+            const owner = s.repository.url.replace('https://github.com/', '').split('/')[0];
+            if (s.name.split('/')[0] !== 'io.github.' + owner) fail.push('namespace/owner mismatch: ' + s.name + ' vs ' + owner);
+            if (fail.length) { console.error(fail.join('\n')); process.exit(1); }
+            console.log('server.json is consistent with package.json');
+          "
+
+      - name: Run the test suites
+        run: |
+          node selftest.mjs
+          node protocol-test.cjs
+
+      - name: Install mcp-publisher
+        run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" \
+            | tar xz mcp-publisher
+          sudo mv mcp-publisher /usr/local/bin/
+          mcp-publisher --help
+
+      - name: Publish to the official MCP registry
+        run: |
+          mcp-publisher login github-oidc
+          mcp-publisher publish

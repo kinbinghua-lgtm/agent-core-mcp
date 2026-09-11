@@ -1,0 +1,22 @@
+# smithery.yaml — Smithery listing configuration.
+#
+# agent-core-mcp is a stdio server with no configuration surface at all: no API
+# keys, no environment variables, no runtime options, no authentication. That
+# absence is the point of the product, so this file is deliberately tiny.
+#
+# Note: Smithery's URL publishing path expects a hosted Streamable HTTP endpoint.
+# This server is intentionally not that — a stdio server has no listening socket,
+# no port to expose and no data leaving the machine, which is most of its value.
+# This manifest is provided for the local/stdio listing path.
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'agent-core-mcp']
+    })

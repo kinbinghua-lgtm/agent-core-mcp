@@ -1,0 +1,15 @@
+# Node
+node_modules/
+npm-debug.log*
+*.tgz
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local diagnostics produced by the test suites
+progress.log
+redos-proof.log
+*.local.json
