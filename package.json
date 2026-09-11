@@ -15,7 +15,8 @@
     "server.cjs",
     "regex-worker.cjs",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    ".mcp.json"
   ],
   "scripts": {
     "start": "node server.cjs",

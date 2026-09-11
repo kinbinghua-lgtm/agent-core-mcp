@@ -45,6 +45,18 @@ Available from:
 
 ## Configure
 
+### Claude Code
+
+This repository ships a `.mcp.json`, so cloning it is enough:
+
+```bash
+git clone https://github.com/kinbinghua-lgtm/agent-core-mcp
+cd agent-core-mcp
+claude   # the agent-core server is discovered automatically
+```
+
+Or add it to any project:
+
 ```json
 {
   "mcpServers": {
@@ -56,7 +68,9 @@ Available from:
 }
 ```
 
-Works with Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, Continue, Zed and any other MCP client. No API keys. No environment variables. Nothing to sign up for.
+### Claude Desktop, Cursor, VS Code, Windsurf, Continue, Zed
+
+Same block, in that client's MCP configuration file. No API keys. No environment variables. Nothing to sign up for.
 
 ## Tools
 
